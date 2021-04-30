@@ -11,16 +11,19 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="9*"/>
-            <RowDefinition Height="1*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
 
-        <Image x:Name="QRCode_QRPicture_Image" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" Source="{Binding QRCode }"/>
+        <Border BorderThickness="2" BorderBrush="Black"  Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <Image x:Name="QRCode_QRPicture_Image" Source="{Binding QRCode }"/>
+        </Border>
 
-        <StackPanel Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Right" Orientation="Horizontal">
-            <Button x:Name="QRCode_Print_Button" Content="{util:Localizer}" Command="{Binding PrintQRCodeCommand }"/>
+        <StackPanel Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Right" Orientation="Horizontal" Margin="0 0 10 10">
+            <Button x:Name="QRCode_Print_Button" Content="{util:Localizer}"  Style="{StaticResource ButtonStyle}" Command="{Binding PrintQRCodeCommand }"/>
 
-            <Button x:Name="QRCode_Finished_Button" Content="{util:Localizer}" Command="{Binding QRCodeGenerationFinishedCommand }"/>
+            <Button x:Name="QRCode_Finished_Button" Content="{util:Localizer}"  Style="{StaticResource ButtonStyle}" Command="{Binding QRCodeGenerationFinishedCommand }"
+                    Margin="10 0 0 0"/>
         </StackPanel>
     </Grid>
 </UserControl>

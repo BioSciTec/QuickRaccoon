@@ -9,10 +9,11 @@
              d:DataContext="{d:DesignInstance Type=personaldata:PersonalDataVM}"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
+
+    <Grid VerticalAlignment="Center" HorizontalAlignment="Center">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition />
-            <ColumnDefinition />
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition  Width="auto"/>
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
@@ -22,18 +23,26 @@
             <RowDefinition />
         </Grid.RowDefinitions>
 
-        <TextBlock x:Name="PersonalData_FirstName_TextBlock" Grid.Row="0" Grid.Column="0" Text="{util:Localizer}"/>
+        <TextBlock x:Name="PersonalData_FirstName_TextBlock" Grid.Row="0" Grid.Column="0" Text="{util:Localizer}" Style="{StaticResource TextBlockStyle}" 
+                       VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0 5 0 10"/>
 
-        <TextBox x:Name="Personaldata_FirstName_TextBox" Grid.Row="0" Grid.Column="1" Text="{Binding FirstName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBox x:Name="Personaldata_FirstName_TextBox" Grid.Row="0" Grid.Column="1" Text="{Binding FirstName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource TextBoxStyle}" 
+                     VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0 5 0 10"/>
 
-        <TextBlock x:Name="PersonalData_LastName_TextBlock" Grid.Row="1" Grid.Column="0" Text="{util:Localizer}"/>
+        <TextBlock x:Name="PersonalData_LastName_TextBlock" Grid.Row="1" Grid.Column="0" Text="{util:Localizer}" Style="{StaticResource TextBlockStyle}" 
+                       VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0 5 0 10"/>
 
-        <TextBox x:Name="Personaldata_LastName_TextBox" Grid.Row="1" Grid.Column="1" Text="{Binding LastName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBox x:Name="Personaldata_LastName_TextBox" Grid.Row="1" Grid.Column="1" Text="{Binding LastName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource TextBoxStyle}" 
+                     VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0 5 0 10"/>
 
-        <TextBlock x:Name="PersonalData_DateOfBirth_TextBlock" Grid.Row="2" Grid.Column="0" Text="{util:Localizer}"/>
+        <TextBlock x:Name="PersonalData_DateOfBirth_TextBlock" Grid.Row="2" Grid.Column="0" Text="{util:Localizer}" Style="{StaticResource TextBlockStyle}" 
+                       VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0 5 0 10"/>
 
-        <DatePicker x:Name="PersonalData_dateOfBirth_DatePicker" Grid.Row="2" Grid.Column="1" SelectedDate="{Binding DateOfBirth, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        <DatePicker x:Name="PersonalData_DateOfBirth_DatePicker" Grid.Row="2" Grid.Column="1" SelectedDate="{Binding DateOfBirth, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                        VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0 5 0 10"/>
 
-        <Button x:Name="PersonalData_CreateQRCode_Button" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Content="{util:Localizer}" Command="{Binding DataEntryFinishedCommand}"/>
+        <Button x:Name="PersonalData_CreateQRCode_Button" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2"  Style="{StaticResource ButtonStyle}" Content="{util:Localizer}" Command="{Binding DataEntryFinishedCommand}" 
+                    VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0 5 0 5"/>
     </Grid>
+
 </UserControl>

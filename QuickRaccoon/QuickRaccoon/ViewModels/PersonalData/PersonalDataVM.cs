@@ -31,7 +31,7 @@ namespace QuickRaccoon.ViewModels.PersonalData
    get => _dateOfBirth;
    set { _dateOfBirth = value; RaisePropertyChangedEvent(); }
   }
-  private DateTime _dateOfBirth;
+  private DateTime _dateOfBirth = DateTime.Today;
   private Action<PersonalData> _createAndShowQRCode;
 
   public PersonalDataVM(Action<PersonalData> createAndShowQRCode)
@@ -42,7 +42,15 @@ namespace QuickRaccoon.ViewModels.PersonalData
   public ICommand DataEntryFinishedCommand => new DelegateCommand(OnDataEntryFinished);
   private void OnDataEntryFinished()
   {
-   _createAndShowQRCode(new PersonalData(FirstName, LastName, DateOfBirth));
+   if ((!_allowValidation && GetErrors(null).Cast<string>().Any()) || HasErrors)
+   {
+    _allowValidation = true;
+    RaisePropertyChangedEvent("FirstName");
+    RaisePropertyChangedEvent("LastName");
+    RaisePropertyChangedEvent("DateOfBirth");
+    return;
+   }
+    _createAndShowQRCode(new PersonalData(FirstName, LastName, DateOfBirth));
   }
 
   public override IEnumerable GetErrors([CallerMemberName] string propertyName = null)
