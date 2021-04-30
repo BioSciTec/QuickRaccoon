@@ -64,13 +64,23 @@ namespace QuickRaccoon.Models
 
    using (Graphics grfx = Graphics.FromImage(pages[0]))
    {
+    StringFormat stringFormat = new()
+    {
+     Alignment = StringAlignment.Center,
+     LineAlignment = StringAlignment.Center
+    };
+
     Bitmap large = CwaTest.GetCwaBarcodeImage();
     large.SetResolution(dpi, dpi);
     grfx.DrawImage(large, borderDpi, borderDpi);
+    grfx.DrawString(CwaTest.GetHashLast6(), new Font("Consolas", 10), Brushes.Black, new Rectangle(borderDpi, borderDpi + large.Height, large.Width, 100), stringFormat);
+
 
     Bitmap small = CwaTest.GetCwaTestIdBarcodeImage();
     large.SetResolution(dpi, dpi);
     grfx.DrawImage(small, widthDpi - MMToPoints(15, dpi) - borderDpi, borderDpi, MMToPoints(15, dpi), MMToPoints(15, dpi));
+    grfx.DrawString(CwaTest.GetHashLast6(), new Font("Consolas", 8), Brushes.Black, new Rectangle(widthDpi - MMToPoints(15, dpi) - borderDpi, borderDpi + MMToPoints(15, dpi), MMToPoints(15, dpi), 60), stringFormat);
+
    }
 
    return pages;

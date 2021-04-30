@@ -35,6 +35,11 @@ namespace QuickRaccoon.Models
    return BitConverter.ToString(hash).Replace("-", "").ToLower();
   }
 
+  public string GetHashLast6()
+  {
+   return hash.Substring(58);
+  }
+
   protected abstract string GetJson();
 
   public string GetLink()
@@ -55,7 +60,7 @@ namespace QuickRaccoon.Models
    QRCodeGenerator qrGenerator = new QRCodeGenerator();
    QRCodeData qrCodeData = qrGenerator.CreateQrCode(hash, QRCodeGenerator.ECCLevel.Q);
    QRCode qrCode = new QRCode(qrCodeData);
-   return qrCode.GetGraphic(20, Color.Black, Color.White, false);
+   return qrCode.GetGraphic(20);//, Color.Black, Color.White, false);
   }
  }
 }
