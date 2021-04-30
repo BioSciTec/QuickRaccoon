@@ -74,7 +74,6 @@
                 </Setter>
                 <Style.Triggers>
                     <Trigger Property="Validation.HasError" Value="True">
-                        <!--<Setter Property="Background" Value="Red"/>-->
                         <Setter Property="ToolTip" Value="{Binding RelativeSource={x:Static RelativeSource.Self},Path=(Validation.Errors).CurrentItem.ErrorContent}"/>
                     </Trigger>
                 </Style.Triggers>
@@ -83,11 +82,23 @@
             <Style x:Key="DatePickerStyle" TargetType="{x:Type DatePicker}">
                 <Setter Property="Width" Value="250"/>
                 <Setter Property="FontSize" Value="14"/>
-                <Setter Property="DisplayDateStart" Value="01/01/1900"/>
                 <Setter Property="Validation.ErrorTemplate" Value="{StaticResource TextErrorTemplate}"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type DatePicker}">
+                            <Border x:Name="Border" CornerRadius="4"  BorderThickness="2" BorderBrush="{StaticResource grayBrush}" HorizontalAlignment="Stretch">
+                                <ScrollViewer x:Name="PART_ContentHost" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsFocused" Value="True">
+                                    <Setter Property="Background" TargetName="Border" Value="{StaticResource highlightYellowBrush}"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
                 <Style.Triggers>
                     <Trigger Property="Validation.HasError" Value="True">
-                        <!--<Setter Property="Background" Value="Red"/>-->
                         <Setter Property="ToolTip" Value="{Binding RelativeSource={x:Static RelativeSource.Self},Path=(Validation.Errors).CurrentItem.ErrorContent}"/>
                     </Trigger>
                 </Style.Triggers>

@@ -50,9 +50,10 @@ namespace QuickRaccoon.ViewModels.PersonalData
     RaisePropertyChangedEvent(nameof(DateOfBirth));
     return;
    }
-    _createAndShowQRCode(new PersonalData(FirstName, LastName, DateOfBirth));
+   _createAndShowQRCode(new PersonalData(FirstName, LastName, DateOfBirth));
   }
 
+  private DateTime _minDate = new DateTime(1900, 1, 1);
   public override IEnumerable GetErrors([CallerMemberName] string propertyName = null)
   {
    if (string.IsNullOrEmpty(propertyName) || propertyName == nameof(FirstName))
@@ -69,6 +70,8 @@ namespace QuickRaccoon.ViewModels.PersonalData
    {
     if (DateOfBirth >= DateTime.Now)
      yield return "Date of birth must be in the past";
+    if (DateOfBirth < _minDate)
+     yield return string.Format("Date of birth must be after {0}!", _minDate.ToString());
    }
   }
  }

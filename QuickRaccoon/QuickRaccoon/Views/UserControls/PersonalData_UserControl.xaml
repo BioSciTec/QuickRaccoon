@@ -38,7 +38,7 @@
         <TextBlock x:Name="PersonalData_DateOfBirth_TextBlock" Grid.Row="2" Grid.Column="0" Text="{util:Localizer}" Style="{StaticResource TextBlockStyle}" 
                        VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0 5 0 10"/>
 
-        <DatePicker x:Name="PersonalData_DateOfBirth_DatePicker" Grid.Row="2" Grid.Column="1" SelectedDate="{Binding DateOfBirth, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+        <DatePicker x:Name="PersonalData_DateOfBirth_DatePicker" Grid.Row="2" Grid.Column="1" SelectedDate="{Binding DateOfBirth, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" 
                         VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0 5 0 10"/>
 
         <Button x:Name="PersonalData_CreateQRCode_Button" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2"  Style="{StaticResource ButtonStyle}" Content="{util:Localizer}" Command="{Binding DataEntryFinishedCommand}" 
