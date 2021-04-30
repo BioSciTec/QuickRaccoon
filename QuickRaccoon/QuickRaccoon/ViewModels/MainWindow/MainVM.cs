@@ -13,6 +13,9 @@ namespace QuickRaccoon.ViewModels.MainWindow
 {
  public class MainVM : NotifyableBase
  {
+  /// <summary>
+  /// Das gerade  angezeigte ViewModel
+  /// </summary>
   public NotifyableBase ActiveView
   {
    get => _activeView;
@@ -29,16 +32,26 @@ namespace QuickRaccoon.ViewModels.MainWindow
    StartDecision();
   }
 
+  /// <summary>
+  /// Öffnet die Start Ansicht( Auswahl ob mit oder ohne persönlichen daten
+  /// </summary>
   private void StartDecision()
   {
    ActiveView = new DataDecisionVM(CreateAndShowQRCode, StartPersonalDataEntry);
   }
 
+  /// <summary>
+  /// Persönliche Dateneingabe starten
+  /// </summary>
   private void StartPersonalDataEntry()
   {
    ActiveView = new PersonalDataVM(CreateAndShowQRCode, StartDecision);
   }
 
+  /// <summary>
+  /// QR-Code Anzeige starten
+  /// </summary>
+  /// <param name="personalData">Ggf. Die persönlichen Daten</param>
   private void CreateAndShowQRCode(PersonalData.PersonalData personalData = null)
   {
    CwaBaseTest qrCode;
