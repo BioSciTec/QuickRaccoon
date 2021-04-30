@@ -35,16 +35,21 @@ namespace QuickRaccoon.ViewModels.PersonalData
 
   public override IEnumerable GetErrors([CallerMemberName] string propertyName = null)
   {
-   if (propertyName == nameof(FirstName) && string.IsNullOrEmpty(FirstName))
-    yield return "Firstname must not be empty";
-
-   if (propertyName == nameof(LastName) && string.IsNullOrEmpty(LastName))
-    yield return "Lastname must not be empty";
-
-   if (propertyName == nameof(DateOfBirth) && DateOfBirth >= DateTime.Now)
-    yield return "Date of birth must be in the past";
-
-   yield return base.GetErrors(propertyName);
+   if (string.IsNullOrEmpty(propertyName) || propertyName == nameof(FirstName))
+   {
+    if (string.IsNullOrEmpty(FirstName))
+     yield return "Firstname must not be empty";
+   }
+   if (string.IsNullOrEmpty(propertyName) || propertyName == nameof(LastName))
+   {
+    if (string.IsNullOrEmpty(LastName))
+     yield return "Lastname must not be empty";
+   }
+   if (string.IsNullOrEmpty(propertyName) || propertyName == nameof(DateOfBirth))
+   {
+    if (DateOfBirth >= DateTime.Now)
+     yield return "Date of birth must be in the past";
+   }
   }
 
  }

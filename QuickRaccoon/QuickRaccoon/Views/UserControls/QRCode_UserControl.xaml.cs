@@ -1,5 +1,4 @@
-﻿using QuickRaccoon.ViewModels.MainWindow;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,16 +13,15 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace QuickRaccoon
+namespace QuickRaccoon.Views.UserControls
 {
  /// <summary>
- /// Interaction logic for MainWindow.xaml
+ /// Interaktionslogik für QRCode_UserControl.xaml
  /// </summary>
- public partial class MainWindow : Window
+ public partial class QRCode_UserControl : UserControl
  {
-  public MainWindow()
+  public QRCode_UserControl()
   {
-   this.DataContext = new MainVM();
    InitializeComponent();
   }
  }

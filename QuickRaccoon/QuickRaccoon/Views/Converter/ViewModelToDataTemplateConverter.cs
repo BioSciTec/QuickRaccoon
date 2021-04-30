@@ -28,7 +28,7 @@ namespace QuickRaccoon.Views.Converter
    StringReader stringReader = new StringReader(
         @"<DataTemplate 
         xmlns='http://schemas.microsoft.com/winfx/2006/xaml/presentation'
-        xmlns:view='clr-namespace:QuickRaccoon.UserControls;assembly=" + assembly + @"'> 
+        xmlns:view='clr-namespace:QuickRaccoon.Views.UserControls;assembly=" + assembly + @"'> 
             <view:" + ucPath + @"/> 
         </DataTemplate>");
    XmlReader xmlReader = XmlReader.Create(stringReader);
