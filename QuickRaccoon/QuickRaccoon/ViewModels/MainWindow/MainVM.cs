@@ -1,4 +1,5 @@
-﻿using QuickRaccoon.ViewModels.DataDecision;
+﻿using QuickRaccoon.Models;
+using QuickRaccoon.ViewModels.DataDecision;
 using QuickRaccoon.ViewModels.PersonalData;
 using QuickRaccoon.ViewModels.QRCode;
 using QuickRaccoon.ViewModels.ViewModelCore;
@@ -40,7 +41,12 @@ namespace QuickRaccoon.ViewModels.MainWindow
 
   private void CreateAndShowQRCode(PersonalData.PersonalData personalData = null)
   {
-   ActiveView = new QRCodeVM(StartDecision);
+   CwaBaseTest qrCode;
+   if (personalData != null)
+    qrCode = new CwaPersTest(personalData.FirstName, personalData.LastName, personalData.DateOfBirth);
+   else
+    qrCode = new CwaBaseTest();
+    ActiveView = new QRCodeVM(StartDecision, qrCode);
   }
  }
 }

@@ -1,11 +1,10 @@
-﻿using QuickRaccoon.ViewModels.ViewModelCore;
+﻿using QuickRaccoon.Models;
+using QuickRaccoon.ViewModels.ViewModelCore;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
 
 namespace QuickRaccoon.ViewModels.QRCode
 {
@@ -13,6 +12,8 @@ namespace QuickRaccoon.ViewModels.QRCode
  public class QRCodeVM : NotifyableBase
  {
   private bool _qrCodeHasBeenPrinted = false;
+  private Action _startDecision;
+  private CwaBaseTest _qRSource;
 
   public ImageSource QRCode
   {
@@ -20,7 +21,6 @@ namespace QuickRaccoon.ViewModels.QRCode
    set { _qRCode = value; RaisePropertyChangedEvent(); }
   }
   private ImageSource _qRCode;
-  private Action _startDecision;
 
   public ICommand PrintQRCodeCommand => new DelegateCommand(OnPrintQRCode);
   private void OnPrintQRCode()
@@ -35,9 +35,27 @@ namespace QuickRaccoon.ViewModels.QRCode
     _startDecision();
   }
 
-  public QRCodeVM(Action startDecision)
+  public QRCodeVM(Action startDecision, CwaBaseTest qrCode)
   {
    _startDecision = startDecision;
+   _qRSource = qrCode;
+   CreateImage();
+  }
+
+  private void CreateImage()
+  {
+   using (MemoryStream memory = new MemoryStream())
+   {
+    _qRSource.GetCwaBarcodeImage().Save(memory, System.Drawing.Imaging.ImageFormat.Bmp);
+    memory.Position = 0;
+    BitmapImage bitmapimage = new BitmapImage();
+    bitmapimage.BeginInit();
+    bitmapimage.StreamSource = memory;
+    bitmapimage.CacheOption = BitmapCacheOption.OnLoad;
+    bitmapimage.EndInit();
+
+    QRCode = bitmapimage;
+   }
   }
  }
 }
