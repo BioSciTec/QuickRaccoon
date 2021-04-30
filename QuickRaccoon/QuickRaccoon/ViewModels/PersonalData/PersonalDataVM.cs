@@ -45,9 +45,9 @@ namespace QuickRaccoon.ViewModels.PersonalData
    if ((!_allowValidation && GetErrors(null).Cast<string>().Any()) || HasErrors)
    {
     _allowValidation = true;
-    RaisePropertyChangedEvent("FirstName");
-    RaisePropertyChangedEvent("LastName");
-    RaisePropertyChangedEvent("DateOfBirth");
+    RaisePropertyChangedEvent(nameof(FirstName));
+    RaisePropertyChangedEvent(nameof(LastName));
+    RaisePropertyChangedEvent(nameof(DateOfBirth));
     return;
    }
     _createAndShowQRCode(new PersonalData(FirstName, LastName, DateOfBirth));
