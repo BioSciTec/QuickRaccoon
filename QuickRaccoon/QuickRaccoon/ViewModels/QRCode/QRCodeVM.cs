@@ -22,6 +22,12 @@ namespace QuickRaccoon.ViewModels.QRCode
   }
   private ImageSource _qRCode;
 
+  public ICommand CancelQRCodeCreationCommand => new DelegateCommand(OnCancelQRCodeCreation);
+  private void OnCancelQRCodeCreation()
+  {
+   _startDecision();
+  }
+
   public ICommand PrintQRCodeCommand => new DelegateCommand(OnPrintQRCode);
   private void OnPrintQRCode()
   {

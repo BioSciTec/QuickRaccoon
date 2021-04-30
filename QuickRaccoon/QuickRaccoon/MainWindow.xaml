@@ -11,8 +11,6 @@
         Title="QuickRaccoon" MinHeight="450" MinWidth="800">
 
     <Grid>
-
         <ContentControl x:Name="ActiveViewHolder" ContentTemplate="{Binding ActiveView ,Converter={converter:ViewModelToDataTemplateConverter}}" Content="{Binding ActiveView}" />
-
     </Grid>
 </Window>

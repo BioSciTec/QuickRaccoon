@@ -12,6 +12,9 @@ namespace QuickRaccoon.ViewModels.PersonalData
 {
  public class PersonalDataVM : ErrorInfoBase
  {
+  private Action<PersonalData> _createAndShowQRCode;
+  private Action _cancelQRCodeGeneration;
+
   public string FirstName
   {
    get => _firstName;
@@ -32,11 +35,11 @@ namespace QuickRaccoon.ViewModels.PersonalData
    set { _dateOfBirth = value; RaisePropertyChangedEvent(); }
   }
   private DateTime _dateOfBirth = DateTime.Today;
-  private Action<PersonalData> _createAndShowQRCode;
 
-  public PersonalDataVM(Action<PersonalData> createAndShowQRCode)
+  public ICommand CancelQRCodeCreationCommand => new DelegateCommand(OnCancelQRCodeCreation);
+  private void OnCancelQRCodeCreation()
   {
-   _createAndShowQRCode = createAndShowQRCode;
+   _cancelQRCodeGeneration();
   }
 
   public ICommand DataEntryFinishedCommand => new DelegateCommand(OnDataEntryFinished);
@@ -51,6 +54,12 @@ namespace QuickRaccoon.ViewModels.PersonalData
     return;
    }
    _createAndShowQRCode(new PersonalData(FirstName, LastName, DateOfBirth));
+  }
+
+  public PersonalDataVM(Action<PersonalData> createAndShowQRCode, Action cancelQRCodeGeneration)
+  {
+   _createAndShowQRCode = createAndShowQRCode;
+   _cancelQRCodeGeneration = cancelQRCodeGeneration;
   }
 
   private DateTime _minDate = new DateTime(1900, 1, 1);

@@ -36,7 +36,7 @@ namespace QuickRaccoon.ViewModels.MainWindow
 
   private void StartPersonalDataEntry()
   {
-   ActiveView = new PersonalDataVM(CreateAndShowQRCode);
+   ActiveView = new PersonalDataVM(CreateAndShowQRCode, StartDecision);
   }
 
   private void CreateAndShowQRCode(PersonalData.PersonalData personalData = null)
@@ -46,7 +46,7 @@ namespace QuickRaccoon.ViewModels.MainWindow
     qrCode = new CwaPersTest(personalData.FirstName, personalData.LastName, personalData.DateOfBirth);
    else
     qrCode = new CwaUnpersTest();
-    ActiveView = new QRCodeVM(StartDecision, qrCode);
+   ActiveView = new QRCodeVM(StartDecision, qrCode);
   }
  }
 }
