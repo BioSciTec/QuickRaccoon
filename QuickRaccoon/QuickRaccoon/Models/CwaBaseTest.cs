@@ -55,7 +55,7 @@ namespace QuickRaccoon.Models
    QRCodeGenerator qrGenerator = new QRCodeGenerator();
    QRCodeData qrCodeData = qrGenerator.CreateQrCode(hash, QRCodeGenerator.ECCLevel.Q);
    QRCode qrCode = new QRCode(qrCodeData);
-   return qrCode.GetGraphic(20);
+   return qrCode.GetGraphic(20, Color.Black, Color.White, false);
   }
  }
 }

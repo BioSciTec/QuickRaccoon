@@ -26,6 +26,8 @@ namespace QuickRaccoon.ViewModels.QRCode
   private void OnPrintQRCode()
   {
    _qrCodeHasBeenPrinted = true;
+   Report report = new Report(_qRSource);
+   report.Print();
   }
 
   public ICommand QRCodeGenerationFinishedCommand => new DelegateCommand(OnQRCodeGenerationFinished);
