@@ -1,0 +1,39 @@
+﻿<UserControl x:Class="QuickRaccoon.Views.UserControls.PersonalData_UserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:QuickRaccoon.Views.UserControls"
+             xmlns:util="clr-namespace:QuickRaccoon.Views.Utilities"
+             xmlns:personaldata="clr-namespace:QuickRaccoon.ViewModels.PersonalData" 
+             d:DataContext="{d:DesignInstance Type=personaldata:PersonalDataVM}"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <TextBlock x:Name="PersonalData_FirstName_TextBlock" Grid.Row="0" Grid.Column="0" Text="{util:Localizer}"/>
+
+        <TextBox x:Name="Personaldata_FirstName_TextBox" Grid.Row="0" Grid.Column="1" Text="{Binding FirstName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+        <TextBlock x:Name="PersonalData_LastName_TextBlock" Grid.Row="1" Grid.Column="0" Text="{util:Localizer}"/>
+
+        <TextBox x:Name="Personaldata_LastName_TextBox" Grid.Row="1" Grid.Column="1" Text="{Binding FirstName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+        <TextBlock x:Name="PersonalData_DateOfBirth_TextBlock" Grid.Row="2" Grid.Column="0" Text="{util:Localizer}"/>
+
+        <DatePicker x:Name="PersonalData_dateOfBirth_DatePicker" Grid.Row="2" Grid.Column="1" SelectedDate="{Binding DateOfBirth, Mode=, UpdateSourceTrigger=PropertyChanged}" DisplayDateStart="01.01.1900"/>
+
+        <Button x:Name="PersonalData_CreateQRCode_Button" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Content="{util:Localizer}" />
+    </Grid>
+</UserControl>
