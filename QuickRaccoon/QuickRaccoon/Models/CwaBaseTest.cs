@@ -35,6 +35,11 @@ namespace QuickRaccoon.Models
    return BitConverter.ToString(hash).Replace("-", "").ToLower();
   }
 
+  public string GetHashLast6()
+  {
+   return hash.Substring(58);
+  }
+
   protected abstract string GetJson();
 
   public string GetLink()
@@ -45,7 +50,7 @@ namespace QuickRaccoon.Models
   public Bitmap GetCwaBarcodeImage()
   {
    QRCodeGenerator qrGenerator = new QRCodeGenerator();
-   QRCodeData qrCodeData = qrGenerator.CreateQrCode(GetLink(), QRCodeGenerator.ECCLevel.Q);
+   QRCodeData qrCodeData = qrGenerator.CreateQrCode(GetLink(), QRCodeGenerator.ECCLevel.L);
    QRCode qrCode = new QRCode(qrCodeData);
    return qrCode.GetGraphic(20);
   }
@@ -53,9 +58,9 @@ namespace QuickRaccoon.Models
   public Bitmap GetCwaTestIdBarcodeImage()
   {
    QRCodeGenerator qrGenerator = new QRCodeGenerator();
-   QRCodeData qrCodeData = qrGenerator.CreateQrCode(hash, QRCodeGenerator.ECCLevel.Q);
+   QRCodeData qrCodeData = qrGenerator.CreateQrCode(hash, QRCodeGenerator.ECCLevel.L);
    QRCode qrCode = new QRCode(qrCodeData);
-   return qrCode.GetGraphic(20);
+   return qrCode.GetGraphic(20);//, Color.Black, Color.White, false);
   }
  }
 }
