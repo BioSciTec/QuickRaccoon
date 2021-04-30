@@ -32,7 +32,7 @@
 
         <TextBlock x:Name="PersonalData_DateOfBirth_TextBlock" Grid.Row="2" Grid.Column="0" Text="{util:Localizer}"/>
 
-        <DatePicker x:Name="PersonalData_dateOfBirth_DatePicker" Grid.Row="2" Grid.Column="1" SelectedDate="{Binding DateOfBirth, Mode=, UpdateSourceTrigger=PropertyChanged}" DisplayDateStart="01.01.1900"/>
+        <DatePicker x:Name="PersonalData_dateOfBirth_DatePicker" Grid.Row="2" Grid.Column="1" SelectedDate="{Binding DateOfBirth, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" DisplayDateStart="01.01.1900"/>
 
         <Button x:Name="PersonalData_CreateQRCode_Button" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Content="{util:Localizer}" />
     </Grid>
