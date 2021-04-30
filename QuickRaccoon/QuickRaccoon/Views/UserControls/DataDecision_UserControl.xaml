@@ -15,9 +15,10 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="8*"/>
-            <RowDefinition Height="2*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
+
 
         <Button x:Name="DataDecision_NoPersonalData_Button" Content="{util:Localizer}" Grid.Row="1" Grid.Column="0" Style="{StaticResource ButtonStyle}" Command="{Binding ContinueWithoutPersonalDataCommand }"/>
         <Button x:Name="DataDecision_WithPersonalData_Button" Content="{util:Localizer}" Grid.Row="1" Grid.Column="1" Style="{StaticResource ButtonStyle}" Command="{Binding ContinueWithPersonalDataCommand}"/>

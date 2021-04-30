@@ -11,6 +11,10 @@
         Title="QuickRaccoon" MinHeight="450" MinWidth="800">
 
     <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="https://image.shutterstock.com/shutterstock/photos/1773473690/display_1500/stock-vector-medical-professional-doctor-or-nurse-doing-covid-or-coronavirus-test-or-dna-test-to-a-young-1773473690.jpg" Opacity=".3" Stretch="UniformToFill"/>
+        </Grid.Background>
+        
         <ContentControl x:Name="ActiveViewHolder" ContentTemplate="{Binding ActiveView ,Converter={converter:ViewModelToDataTemplateConverter}}" Content="{Binding ActiveView}" />
     </Grid>
 </Window>

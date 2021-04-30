@@ -17,7 +17,7 @@
         </Grid.RowDefinitions>
 
         <StackPanel Grid.Row="0" HorizontalAlignment="Right" Orientation="Horizontal">
-            <Button Padding="12" Width="37" Height="37" Background="White" Style="{StaticResource closeButtonStyle}" Command="{Binding CancelQRCodeCreationCommand}"/>
+            <Button Padding="12" Width="37" Height="37" Style="{StaticResource closeButtonStyle}" Command="{Binding CancelQRCodeCreationCommand}"/>
         </StackPanel>        
 
         <Border BorderThickness="2" BorderBrush="Black"  Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center">
