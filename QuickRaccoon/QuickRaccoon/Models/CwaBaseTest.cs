@@ -1,27 +1,16 @@
 ﻿using QRCoder;
 using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
-using System.Text.Json;
-using System.Threading.Tasks;
 
 namespace QuickRaccoon.Models
 {
- public class CwaBaseTest
+ public abstract class CwaBaseTest
  {
-  protected long timestamp { get; set; }
-  protected string salt { get; set; }
-  protected string hash { get; set; }
-
-  public CwaBaseTest()
-  {
-   timestamp = GetTimeStamp();
-   salt = GetSalt();
-   hash = GetHash();
-  }
+  public long timestamp { get; protected set; }
+  public string salt { get; protected set; }
+  public string hash { get; protected set; }
 
   protected long GetTimeStamp()
   {
@@ -30,28 +19,27 @@ namespace QuickRaccoon.Models
 
   protected string GetSalt()
   {
-   var salt = new byte[32];
+   var salt = new byte[16];
    using (var random = new RNGCryptoServiceProvider())
     random.GetNonZeroBytes(salt);
    return BitConverter.ToString(salt).Replace("-", "");
   }
 
-  protected virtual string GetHashContent()
-  {
-   return timestamp.ToString() + '#' + salt;
-  }
+  protected abstract string GetHashContent();
 
   protected string GetHash()
   {
-   var hash = new byte[256];
+   byte[] hash;
    using (SHA256 sha256Hash = SHA256.Create())
-    sha256Hash.ComputeHash(Encoding.UTF8.GetBytes(GetHashContent()));
+    hash = sha256Hash.ComputeHash(Encoding.UTF8.GetBytes(GetHashContent()));
    return BitConverter.ToString(hash).Replace("-", "").ToLower();
   }
 
+  protected abstract string GetJson();
+
   public string GetLink()
   {
-   return "https://s.coronawarn.app?v=1#" + Convert.ToBase64String(Encoding.UTF8.GetBytes(JsonSerializer.Serialize(this)));
+   return "https://s.coronawarn.app?v=1#" + Convert.ToBase64String(Encoding.UTF8.GetBytes(GetJson()));
   }
 
   public Bitmap GetCwaBarcodeImage()

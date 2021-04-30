@@ -1,17 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Text.Json;
 
 namespace QuickRaccoon.Models
 {
  public class CwaPersTest : CwaBaseTest
  {
-  protected string fn { get; set; }
-  protected string ln { get; set; }
-  protected string dob { get; set; }
-  protected string testid { get; set; }
+  public string fn { get; }
+  public string ln { get; }
+  public string dob { get; }
+  public string testid { get; }
 
   public CwaPersTest(string firstName, string lastName, DateTime dateOfBirth)
   {
@@ -32,6 +29,11 @@ namespace QuickRaccoon.Models
   protected override string GetHashContent()
   {
    return dob + '#' + fn + '#' + ln + '#' + timestamp.ToString() + '#' + testid + '#' + salt;
+  }
+
+  protected override string GetJson()
+  {
+   return JsonSerializer.Serialize(this);
   }
  }
 }

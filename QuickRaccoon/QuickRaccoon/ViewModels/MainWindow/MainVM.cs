@@ -45,7 +45,7 @@ namespace QuickRaccoon.ViewModels.MainWindow
    if (personalData != null)
     qrCode = new CwaPersTest(personalData.FirstName, personalData.LastName, personalData.DateOfBirth);
    else
-    qrCode = new CwaBaseTest();
+    qrCode = new CwaUnpersTest();
     ActiveView = new QRCodeVM(StartDecision, qrCode);
   }
  }
