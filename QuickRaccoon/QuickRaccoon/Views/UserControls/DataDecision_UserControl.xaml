@@ -19,7 +19,7 @@
             <RowDefinition Height="2*"/>
         </Grid.RowDefinitions>
 
-        <Button x:Name="DataDecision_NoPersonalData_Button" Content="{util:Localizer}" Grid.Row="1" Grid.Column="0" Command="{Binding ContinueWithoutPersonalDataCommand }"/>
-        <Button x:Name="DataDecision_WithPersonalData_Button" Content="{util:Localizer}" Grid.Row="1" Grid.Column="1" Command="{Binding ContinueWithPersonalDataCommand}"/>
+        <Button x:Name="DataDecision_NoPersonalData_Button" Content="{util:Localizer}" Grid.Row="1" Grid.Column="0" Style="{StaticResource ButtonStyle}" Command="{Binding ContinueWithoutPersonalDataCommand }"/>
+        <Button x:Name="DataDecision_WithPersonalData_Button" Content="{util:Localizer}" Grid.Row="1" Grid.Column="1" Style="{StaticResource ButtonStyle}" Command="{Binding ContinueWithPersonalDataCommand}"/>
     </Grid>
 </UserControl>

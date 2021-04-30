@@ -12,6 +12,9 @@ namespace QuickRaccoon.ViewModels.PersonalData
 {
  public class PersonalDataVM : ErrorInfoBase
  {
+  private Action<PersonalData> _createAndShowQRCode;
+  private Action _cancelQRCodeGeneration;
+
   public string FirstName
   {
    get => _firstName;
@@ -31,20 +34,35 @@ namespace QuickRaccoon.ViewModels.PersonalData
    get => _dateOfBirth;
    set { _dateOfBirth = value; RaisePropertyChangedEvent(); }
   }
-  private DateTime _dateOfBirth;
-  private Action<PersonalData> _createAndShowQRCode;
+  private DateTime _dateOfBirth = DateTime.Today;
 
-  public PersonalDataVM(Action<PersonalData> createAndShowQRCode)
+  public ICommand CancelQRCodeCreationCommand => new DelegateCommand(OnCancelQRCodeCreation);
+  private void OnCancelQRCodeCreation()
   {
-   _createAndShowQRCode = createAndShowQRCode;
+   _cancelQRCodeGeneration();
   }
 
   public ICommand DataEntryFinishedCommand => new DelegateCommand(OnDataEntryFinished);
   private void OnDataEntryFinished()
   {
+   if ((!_allowValidation && GetErrors(null).Cast<string>().Any()) || HasErrors)
+   {
+    _allowValidation = true;
+    RaisePropertyChangedEvent(nameof(FirstName));
+    RaisePropertyChangedEvent(nameof(LastName));
+    RaisePropertyChangedEvent(nameof(DateOfBirth));
+    return;
+   }
    _createAndShowQRCode(new PersonalData(FirstName, LastName, DateOfBirth));
   }
 
+  public PersonalDataVM(Action<PersonalData> createAndShowQRCode, Action cancelQRCodeGeneration)
+  {
+   _createAndShowQRCode = createAndShowQRCode;
+   _cancelQRCodeGeneration = cancelQRCodeGeneration;
+  }
+
+  private DateTime _minDate = new DateTime(1900, 1, 1);
   public override IEnumerable GetErrors([CallerMemberName] string propertyName = null)
   {
    if (string.IsNullOrEmpty(propertyName) || propertyName == nameof(FirstName))
@@ -61,6 +79,8 @@ namespace QuickRaccoon.ViewModels.PersonalData
    {
     if (DateOfBirth >= DateTime.Now)
      yield return "Date of birth must be in the past";
+    if (DateOfBirth < _minDate)
+     yield return string.Format("Date of birth must be after {0}!", _minDate.ToString());
    }
   }
  }
