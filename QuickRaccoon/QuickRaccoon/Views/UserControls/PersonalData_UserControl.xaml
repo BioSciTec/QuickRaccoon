@@ -34,6 +34,6 @@
 
         <DatePicker x:Name="PersonalData_dateOfBirth_DatePicker" Grid.Row="2" Grid.Column="1" SelectedDate="{Binding DateOfBirth, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
-        <Button x:Name="PersonalData_CreateQRCode_Button" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Content="{util:Localizer}" />
+        <Button x:Name="PersonalData_CreateQRCode_Button" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Content="{util:Localizer}" Command="{Binding DataEntryFinishedCommand}"/>
     </Grid>
 </UserControl>

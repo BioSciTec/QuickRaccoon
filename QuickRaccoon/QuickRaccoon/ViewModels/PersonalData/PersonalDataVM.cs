@@ -6,6 +6,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace QuickRaccoon.ViewModels.PersonalData
 {
@@ -31,7 +32,18 @@ namespace QuickRaccoon.ViewModels.PersonalData
    set { _dateOfBirth = value; RaisePropertyChangedEvent(); }
   }
   private DateTime _dateOfBirth;
+  private Action<PersonalData> _createAndShowQRCode;
 
+  public PersonalDataVM(Action<PersonalData> createAndShowQRCode)
+  {
+   _createAndShowQRCode = createAndShowQRCode;
+  }
+
+  public ICommand DataEntryFinishedCommand => new DelegateCommand(OnDataEntryFinished);
+  private void OnDataEntryFinished()
+  {
+   _createAndShowQRCode(new PersonalData(FirstName, LastName, DateOfBirth));
+  }
 
   public override IEnumerable GetErrors([CallerMemberName] string propertyName = null)
   {
@@ -51,6 +63,21 @@ namespace QuickRaccoon.ViewModels.PersonalData
      yield return "Date of birth must be in the past";
    }
   }
+ }
 
+ public class PersonalData
+ {
+  public string FirstName { get; }
+
+  public string LastName { get; }
+
+  public DateTime DateOfBirth { get; }
+
+  public PersonalData(string firstName, string lastName, DateTime dateOfBirth)
+  {
+   FirstName = firstName;
+   LastName = lastName;
+   DateOfBirth = dateOfBirth;
+  }
  }
 }

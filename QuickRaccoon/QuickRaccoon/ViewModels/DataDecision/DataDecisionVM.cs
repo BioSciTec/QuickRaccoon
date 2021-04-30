@@ -10,16 +10,19 @@ namespace QuickRaccoon.ViewModels.DataDecision
 {
  public class DataDecisionVM : NotifyableBase
  {
+  private Action<PersonalData.PersonalData> _createAndShowQRCode;
+  private Action _startPersonalDataEntry;
+
   public ICommand ContinueWithoutPersonalDataCommand => new DelegateCommand(OnContinueWithoutPersonalData);
-  private void OnContinueWithoutPersonalData()
-  {
-   throw new NotImplementedException();
-  }
+  private void OnContinueWithoutPersonalData() => _createAndShowQRCode(null);
 
   public ICommand ContinueWithPersonalDataCommand => new DelegateCommand(OnContinueWithPersonalData);
-  private void OnContinueWithPersonalData()
+  private void OnContinueWithPersonalData() => _startPersonalDataEntry();
+
+  public DataDecisionVM(Action<PersonalData.PersonalData> createAndShowQRCode, Action startPersonalDataEntry)
   {
-   throw new NotImplementedException();
+   _createAndShowQRCode = createAndShowQRCode;
+   _startPersonalDataEntry = startPersonalDataEntry;
   }
  }
 }

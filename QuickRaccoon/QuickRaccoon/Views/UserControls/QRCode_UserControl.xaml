@@ -17,6 +17,10 @@
 
         <Image x:Name="QRCode_QRPicture_Image" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" Source="{Binding QRCode }"/>
 
-        <Button x:Name="QRCode_Print_Button" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Right" Command="{Binding PrintQRCodeCommand }"/>
+        <StackPanel Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Right" Orientation="Horizontal">
+            <Button x:Name="QRCode_Print_Button" Content="{util:Localizer}" Command="{Binding PrintQRCodeCommand }"/>
+
+            <Button x:Name="QRCode_Finished_Button" Content="{util:Localizer}" Command="{Binding QRCodeGenerationFinishedCommand }"/>
+        </StackPanel>
     </Grid>
 </UserControl>

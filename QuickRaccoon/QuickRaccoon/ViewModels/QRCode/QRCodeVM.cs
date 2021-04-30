@@ -9,19 +9,35 @@ using System.Windows.Media;
 
 namespace QuickRaccoon.ViewModels.QRCode
 {
+
  public class QRCodeVM : NotifyableBase
  {
+  private bool _qrCodeHasBeenPrinted = false;
+
   public ImageSource QRCode
   {
    get => _qRCode;
    set { _qRCode = value; RaisePropertyChangedEvent(); }
   }
   private ImageSource _qRCode;
+  private Action _startDecision;
 
   public ICommand PrintQRCodeCommand => new DelegateCommand(OnPrintQRCode);
   private void OnPrintQRCode()
   {
-   throw new NotImplementedException();
+   _qrCodeHasBeenPrinted = true;
+  }
+
+  public ICommand QRCodeGenerationFinishedCommand => new DelegateCommand(OnQRCodeGenerationFinished);
+  private void OnQRCodeGenerationFinished()
+  {
+   if (_qrCodeHasBeenPrinted)
+    _startDecision();
+  }
+
+  public QRCodeVM(Action startDecision)
+  {
+   _startDecision = startDecision;
   }
  }
 }

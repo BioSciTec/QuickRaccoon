@@ -1,5 +1,6 @@
 ﻿using QuickRaccoon.ViewModels.DataDecision;
 using QuickRaccoon.ViewModels.PersonalData;
+using QuickRaccoon.ViewModels.QRCode;
 using QuickRaccoon.ViewModels.ViewModelCore;
 using System;
 using System.Collections.Generic;
@@ -24,7 +25,22 @@ namespace QuickRaccoon.ViewModels.MainWindow
 
   public MainVM()
   {
-   ActiveView = new DataDecisionVM();
+   StartDecision();
+  }
+
+  private void StartDecision()
+  {
+   ActiveView = new DataDecisionVM(CreateAndShowQRCode, StartPersonalDataEntry);
+  }
+
+  private void StartPersonalDataEntry()
+  {
+   ActiveView = new PersonalDataVM(CreateAndShowQRCode);
+  }
+
+  private void CreateAndShowQRCode(PersonalData.PersonalData personalData = null)
+  {
+   ActiveView = new QRCodeVM(StartDecision);
   }
  }
 }
