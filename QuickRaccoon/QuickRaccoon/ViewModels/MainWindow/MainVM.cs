@@ -33,7 +33,7 @@ namespace QuickRaccoon.ViewModels.MainWindow
   }
 
   /// <summary>
-  /// Öffnet die Start Ansicht( Auswahl ob mit oder ohne persönlichen daten
+  /// Öffnet die Start Ansicht( Auswahl ob mit oder ohne persönlichen Daten
   /// </summary>
   private void StartDecision()
   {

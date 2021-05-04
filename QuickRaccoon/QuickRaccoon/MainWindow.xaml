@@ -8,7 +8,8 @@
         xmlns:converter="clr-namespace:QuickRaccoon.Views.Converter"
         d:DataContext="{d:DesignInstance Type=mainwindow:MainVM}"
         mc:Ignorable="d"
-        Title="QuickRaccoon" MinHeight="450" MinWidth="800">
+        Title="QuickRaccoon" MinHeight="450" MinWidth="800"
+        Closing="Window_Closing">
 
     <Grid>
         <Grid.Background>

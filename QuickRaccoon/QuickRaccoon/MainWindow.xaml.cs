@@ -26,5 +26,11 @@ namespace QuickRaccoon
    this.DataContext = new MainVM();
    InitializeComponent();
   }
+
+  private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+  {
+   if (MessageBoxResult.Yes != MessageBox.Show("Do you really want to close the application?", "Warning", MessageBoxButton.YesNoCancel))
+    e.Cancel = true;
+  }
  }
 }
