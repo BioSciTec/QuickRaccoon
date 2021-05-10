@@ -9,6 +9,9 @@ using System.Threading.Tasks;
 
 namespace QuickRaccoon.Models
 {
+ /// <summary>
+ /// Erstellt einen Druckbaren Report
+ /// </summary>
  public class Report
  {
   protected CwaBaseTest CwaTest;
@@ -18,6 +21,9 @@ namespace QuickRaccoon.Models
    CwaTest = cwat;
   }
 
+  /// <summary>
+  /// Erstellt einen Druckbaren Report mit dem QR-Code codierten Link für die CWA-App und einem QR-Code mit der "CWA Test ID" (hash)
+  /// </summary>
   public void Print()
   {
    Bitmap[] pages = CreatePrintingPage(600, 10);

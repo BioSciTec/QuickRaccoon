@@ -2,8 +2,14 @@
 
 namespace QuickRaccoon.Models
 {
+ /// <summary>
+ /// Dient der Erstellung von QR-Codes für die Integration von Schnelltests mit ohne persönlichen Daten
+ /// </summary>
  public class CwaUnpersTest : CwaBaseTest
  {
+  /// <summary>
+  /// Standard Konstruktor.
+  /// </summary>
   public CwaUnpersTest()
   {
    timestamp = GetTimeStamp();
