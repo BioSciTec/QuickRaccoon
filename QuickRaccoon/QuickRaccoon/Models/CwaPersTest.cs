@@ -5,10 +5,11 @@ namespace QuickRaccoon.Models
 {
  public class CwaPersTest : CwaBaseTest
  {
-  public string fn { get; }
-  public string ln { get; }
-  public string dob { get; }
-  public string testid { get; }
+  public string fn { get; protected set; }
+  public string ln { get; protected set; }
+  public string dob { get; protected set; }
+  public new long timestamp { get; protected set; }
+  public string testid { get; protected set; }
 
   public CwaPersTest(string firstName, string lastName, DateTime dateOfBirth)
   {
@@ -33,7 +34,7 @@ namespace QuickRaccoon.Models
 
   protected override string GetJson()
   {
-   return JsonSerializer.Serialize(this);
+   return JsonSerializer.Serialize(this);//, new JsonSerializerOptions() { WriteIndented = true }).Replace("\r\n", "").Replace("  ", " ").Replace("}", " }");
   }
  }
 }

@@ -2,7 +2,7 @@
 
 namespace QuickRaccoon.Models
 {
- class CwaUnpersTest : CwaBaseTest
+ public class CwaUnpersTest : CwaBaseTest
  {
   public CwaUnpersTest()
   {
@@ -18,7 +18,7 @@ namespace QuickRaccoon.Models
 
   protected override string GetJson()
   {
-   return JsonSerializer.Serialize(this);
+   return JsonSerializer.Serialize(this);//, new JsonSerializerOptions() { WriteIndented = true }).Replace("\r\n", "").Replace("  ", " ").Replace("}", " }");
   }
  }
 }
